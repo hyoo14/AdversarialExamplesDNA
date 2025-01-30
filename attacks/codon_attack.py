@@ -36,6 +36,6 @@ def codon_attack(sequences, mutation_rate=0.1, iteration=1):
 # iternum = 1
 # mutation_rate=0.1
 
-# test_df['sequence'] = nucleotide_attack(test_df['sequence'], mutation_rate, iternum)
+# test_df['sequence'] = codon_attack(test_df['sequence'], mutation_rate, iternum)
 
 # test_df.to_csv("/content/drive/MyDrive/RDL/prj/data/test_atk_codon_iter1_rate0_1.csv")
