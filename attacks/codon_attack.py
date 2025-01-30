@@ -19,7 +19,7 @@ def codon_mutatation(sequence, mutation_rate=0.1):
     return ''.join(codons)
 
 
-def nucleotide_attack(sequences, mutation_rate=0.1, iteration=1):
+def codon_attack(sequences, mutation_rate=0.1, iteration=1):
   mutated_sequences = sequences.copy()  # copy original
   for _ in range(iteration):
         mutated_sequences = mutated_sequences.apply(
