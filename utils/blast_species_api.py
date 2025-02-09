@@ -133,3 +133,94 @@ df["BLAST Result"] = blast_results
 df.to_csv(output_csv_path, index=False)
 
 print("BLAST 검색 결과 저장 완료:", output_csv_path)
+
+
+
+
+
+
+
+
+##### version 2 for cluster #####
+## need to download chrome drive and make aligned with specific directories
+# !mkdir -p ~/chrome
+# !wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
+# !ar x chrome.deb
+# !tar -xf data.tar.xz
+# !~/chrome/opt/google/chrome/google-chrome --version
+# !/home/x-hyoo2/chrome/opt/google/chrome/google-chrome --version
+# !chmod +x /home/x-hyoo2/chrome/chromedriver
+
+
+
+# from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
+
+# options = webdriver.ChromeOptions()
+# options.add_argument("--headless")  # GUI 없는 환경에서 실행
+# options.add_argument("--no-sandbox")
+# options.add_argument("--disable-dev-shm-usage")
+
+# # Chrome 바이너리 경로 지정
+# options.binary_location = "/home/x-hyoo2/chrome/opt/google/chrome/google-chrome"
+
+# # Chromedriver 경로 직접 지정
+# chromedriver_path = "/home/x-hyoo2/chrome/chromedriver/chromedriver"  # Chromedriver가 위치한 경로
+# service = Service(chromedriver_path)
+
+# # WebDriver 실행
+# driver = webdriver.Chrome(service=service, options=options)
+
+# driver.get("https://www.google.com")
+# print(" Selenium 실행 성공:", driver.title)
+
+# driver.quit()
+
+
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+
+# #input_seq = "ATGAATCCCTATCTACAGTTAGGTCACAAAGAATTTTCGTTAGAAAAAAACTAAGAACCCCCTCATTTAGTCCTTGCTGCCTTCAGCGGAGTCGAGGTTTAGTTGCAGCCAGAATCAGCCAAACAATGCTAACGGCTCGTCAAAGCCTTAAAGCTCGTAAACGAGATCTGCTTGTCAGATGGCTACCGAACCGAAAAGCAGCAACGGTATTTATGGGAATATTCCATGATAGAAAATGGGCTAGCCTCTATGAAACAATTTGTGGCATTGCCCGGTCGCAGTCAACATCAGTTAGGCTTAGCCCTCAATTTTGGTTTAAAGGGCAGCCAGGTAGATTTTATCTGCCCAGTATTTCGGGACAGCGCAGCCGCTGATTTATTTACCCAGGAAATGCTTAACTATGGGTTTATTTTAGGCTATTCCGCAGACAAACAGGAGATTTCAGGGATTGGCTGTGAACCTTGTCATTTCCGGTATGTCTGGCTGCCTCATAGGCAAATCATCGCCAGTCAACAGTGGACCTAGGAAGAAGCCCATCAATACCGTCATCAAACTGCGGGGCAGTTCGCATGA"
+# input_seq = "GGGAATCCCTATTAGTGCTTAGTTGCCAAAGTTGTACCGTTAGAAAAAAAGCATGAACAGAACCAATTAGATCTTGCTGCCTTCAGCGAAGTGGAGCTACATTTGCAGTCATTGGCAGGTAGTCAATGGGAAAACTGCAAAAAAGAGTTAAAGCCAGACAACGAGATCCAATTGCGGGATGACTACCGAACCGAAAAGTGGAATCGGTATTACTGGGAATATTCCTTGAAAGAAAATATTCTAGAATATACGTCGCAAAGGCCCTCTTCGCCCGGTTGCGCTGAACATCAGTTAGGCTTACCGATCGATGTTGGTTTAAAGCTGAGCCAGGATGGGAAACGGTGCATGCTATTTAATGACAGCGCAGCCTTTGATTTATTTACCATAGTGCTGATGAACTATTGAACCATTTTACTCTATCCCTGCGCAAAACAGGAGATTCTAGGGATTGGCCGAGAACGCTGGCATTTCCCCTCTGTCGGGTCATCGCATAGTATGATCAGTGCCAGTCAACAGATGACCTTGGAAGATTACCATCAACGGCTTCGGTTCACTGCGAGGAAATTCGCATGA"
+
+# blast_url = f"https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROGRAM=blastn&LINK_LOC=gquery&QUERY={input_seq}"
+
+
+# service = Service()
+# driver = webdriver.Chrome(service=service, options=options)
+
+# # BLAST 페이지 접속
+# driver.get(blast_url)
+
+# # BLAST 버튼 클릭 (XPath 방식)
+# try:
+#     blast_button = WebDriverWait(driver, 10).until(
+#         EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/div[2]/form/div[6]/div/div[1]/div[1]/input"))
+#     )
+#     blast_button.click()
+#     print("BLAST 버튼 클릭 성공")
+# except Exception as e:
+#     print("BLAST 버튼 클릭 실패:", e)
+#     driver.quit()
+#     exit()
+
+# # 검색 결과 페이지 대기 (최대 30초)
+# try:
+#     result_element = WebDriverWait(driver, 30).until(
+#         EC.presence_of_element_located((By.XPATH, "/html/body/main/section[2]/ul/li[1]/div/div[3]/form/div[3]/div/table/tbody/tr[1]/td[3]/span/a"))
+#     )
+
+#     # title 속성 추출
+#     result_title = result_element.get_attribute("title")
+#     print(result_title)
+#     result = result_title
+
+# except Exception:
+#     print("No result")
+#     result = "No result"
+
+# # 드라이버 종료
+# driver.quit()
+
+
