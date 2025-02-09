@@ -68,3 +68,34 @@ similarity_results = {
 }
 
 similarity_results
+
+
+
+
+
+for i in range(1, 6):
+  file_path2 = f"/content/drive/MyDrive/RDL/prj/data/test_PD_atk_nucl_iter1_rate0_{i}.csv"
+  df2 = pd.read_csv(file_path2)
+
+  # GC 함량 계산 후 새로운 컬럼 추가
+  df2["GC_Content"] = df2["sequence"].apply(calculate_gc_content)
+
+  # 1️⃣ 평균 GC 함량 비교
+  mean_diff = abs(df["GC_Content"].mean() - df2["GC_Content"].mean())
+
+  # 2️⃣ 코사인 유사도 계산 (1D 배열을 2D로 reshape 필요)
+  gc_content_df = np.array(df["GC_Content"]).reshape(1, -1)
+  gc_content_df2 = np.array(df2["GC_Content"]).reshape(1, -1)
+  cosine_sim = cosine_similarity(gc_content_df, gc_content_df2)[0][0]
+
+  # 3️⃣ 피어슨 상관계수 계산
+  pearson_corr = np.corrcoef(df["GC_Content"], df2["GC_Content"])[0, 1]
+
+  # 결과 출력
+  similarity_results = {
+      "Mean Difference": mean_diff,
+      "Cosine Similarity": cosine_sim,
+      "Pearson Correlation": pearson_corr
+  }
+  print(i)
+  print(similarity_results)
